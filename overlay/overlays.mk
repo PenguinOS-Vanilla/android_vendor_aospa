@@ -15,8 +15,10 @@ PRODUCT_PACKAGES += \
     AOSPASystemUIOverlay \
     FontComfortaaOverlay \
     FontExotwoOverlay \
+    FontFiraSansOverlay \
     FontGoogleSansOverlay \
     FontHarmonySansOverlay \
+    FontHKGroteskOverlay \
     FontInterOverlay \
     FontLinotteSourceOverlay \
     FontManropeOverlay \
@@ -24,6 +26,10 @@ PRODUCT_PACKAGES += \
     FontNotoSansOverlay \
     FontOnePlusSansOverlay  \
     FontOppoSansOverlay \
+    FontRecursiveCasualOverlay \
+    FontRecursiveLinearOverlay \
+    FontSourceSansOverlay \
+    FontSourceSerifOverlay \
     FontSpaceGroteskOverlay \
     FontStoropiaOverlay \
     FontUrbanistOverlay \
