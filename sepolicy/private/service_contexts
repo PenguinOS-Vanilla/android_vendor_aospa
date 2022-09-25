@@ -28,5 +28,9 @@ lmo_freeform                              u:object_r:lmo_freeform_service:s0
 # Refresh Rate Manager
 refresh_rate_ext                          u:object_r:refresh_rate_manager_service:s0
 
+# Linearmotor Vibrator
+linearmotor                               u:object_r:linearmotor_vibrator_service:s0
+
+
 
 
