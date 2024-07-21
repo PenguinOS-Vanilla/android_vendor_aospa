@@ -174,7 +174,7 @@ fi
 TIME_START=$(date +%s.%N)
 
 # Friendly logging to tell the user everything is working fine is always nice
-echo -e "${CLR_BLD_GRN}Building AOSPA $AOSPA_DISPLAY_VERSION for $DEVICE${CLR_RST}"
+echo -e "${CLR_BLD_GRN}Building PenguinOS $AOSPA_DISPLAY_VERSION for $DEVICE${CLR_RST}"
 echo -e "${CLR_GRN}Start time: $(date)${CLR_RST}"
 echo -e ""
 
@@ -240,16 +240,16 @@ elif [ "${KEY_MAPPINGS}" ]; then
 
     echo -e "${CLR_BLD_BLU}Signing target files apks${CLR_RST}"
     sign_target_files_apks -o -d $KEY_MAPPINGS \
-        "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files.zip \
-        aospa-$AOSPA_VERSION-signed-target_files.zip
+        "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files-$FILE_NAME_TAG.zip \
+        PenguinOS-$AOSPA_VERSION-signed-target_files-$FILE_NAME_TAG.zip
 
     checkExit
 
     echo -e "${CLR_BLD_BLU}Generating signed install package${CLR_RST}"
     ota_from_target_files -k $KEY_MAPPINGS/releasekey \
         --block ${INCREMENTAL} \
-        aospa-$AOSPA_VERSION-signed-target_files.zip \
-        aospa-$AOSPA_VERSION.zip
+        PenguinOS-$AOSPA_VERSION-signed-target_files-$FILE_NAME_TAG.zip \
+        PenguinOS-$AOSPA_VERSION.zip
 
     checkExit
 
@@ -261,16 +261,16 @@ elif [ "${KEY_MAPPINGS}" ]; then
         fi
         ota_from_target_files -k $KEY_MAPPINGS/releasekey \
             --block --incremental_from $DELTA_TARGET_FILES \
-            aospa-$AOSPA_VERSION-signed-target_files.zip \
-            aospa-$AOSPA_VERSION-delta.zip
+            PenguinOS-$AOSPA_VERSION-signed-target_files-$FILE_NAME_TAG.zip \
+            PenguinOS-$AOSPA_VERSION-delta.zip
         checkExit
     fi
 
     if [ "$FLAG_IMG_ZIP" = 'y' ]; then
         echo -e "${CLR_BLD_BLU}Generating signed fastboot package${CLR_RST}"
         img_from_target_files \
-            aospa-$AOSPA_VERSION-signed-target_files.zip \
-            aospa-$AOSPA_VERSION-image.zip
+            PenguinOS-$AOSPA_VERSION-signed-target_files-$FILE_NAME_TAG.zip \
+            PenguinOS-$AOSPA_VERSION-image.zip
         checkExit
     fi
 # Build rom package
@@ -281,15 +281,15 @@ elif [ "$FLAG_IMG_ZIP" = 'y' ]; then
 
     echo -e "${CLR_BLD_BLU}Generating install package${CLR_RST}"
     ota_from_target_files \
-        "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files.zip \
-        aospa-$AOSPA_VERSION.zip
+        "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files-$FILE_NAME_TAG.zip \
+        PenguinOS-$AOSPA_VERSION.zip
 
     checkExit
 
     echo -e "${CLR_BLD_BLU}Generating fastboot package${CLR_RST}"
     img_from_target_files \
-        "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files.zip \
-        aospa-$AOSPA_VERSION-image.zip
+        "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files-$FILE_NAME_TAG.zip \
+        PenguinOS-$AOSPA_VERSION-image.zip
 
     checkExit
 
@@ -298,8 +298,8 @@ else
 
     checkExit
 
-    cp -f $OUT/aospa_$DEVICE-ota.zip $OUT/aospa-$AOSPA_VERSION.zip
-    echo "Package Complete: $OUT/aospa-$AOSPA_VERSION.zip"
+    cp -f $OUT/aospa_$DEVICE-ota-$FILE_NAME_TAG.zip $OUT/PenguinOS-$AOSPA_VERSION.zip
+    echo "Package Complete: $OUT/PenguinOS-$AOSPA_VERSION.zip"
 fi
 echo -e ""
 
