@@ -22,3 +22,7 @@ obscura                                   u:object_r:obscura_service:s0
 # PowerInsight
 power_insight                             u:object_r:power_insight_service:s0
 
+# Freeform
+lmo_freeform                              u:object_r:lmo_freeform_service:s0
+
+
