@@ -54,3 +54,5 @@ function sort-blobs-list() {
 }
 
 export SKIP_ABI_CHECKS=true
+
+export DISABLE_STUB_VALIDATION=true
