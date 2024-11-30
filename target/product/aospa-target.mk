@@ -274,3 +274,8 @@ PRODUCT_PACKAGES += \
     libwpa_client
 
 PRODUCT_VENDOR_MOVE_ENABLED := true
+
+# LMOFreeform
+PRODUCT_PACKAGES += \
+    LMOFreeform \
+    LMOFreeformSidebar
