@@ -24,6 +24,7 @@ PRODUCT_PACKAGES += \
     FontOnePlusSansOverlay  \
     FontOppoSansOverlay \
     FontSpaceGroteskOverlay \
+    FontStoropiaOverlay \
     FontUrbanistOverlay \
     FontVolteOverlay \
     IconPackCircularAndroidOverlay \
