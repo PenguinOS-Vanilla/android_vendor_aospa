@@ -482,4 +482,12 @@
   <alias name="exotwo-semi-bold" to="exotwo" weight="600" />
   <alias name="exotwo-bold" to="exotwo" weight="700" />
 
+  <!-- Comfortaa -->
+  <family customizationType="new-named-family" name="comfortaa">
+      <font weight="400" style="normal">Comfortaa.ttf</font>
+  </family>
+  <alias name="comfortaa-medium" to="comfortaa" weight="500" />
+  <alias name="comfortaa-semi-bold" to="comfortaa" weight="600" />
+  <alias name="comfortaa-bold" to="comfortaa" weight="700" />
+
 </fonts-modification>
