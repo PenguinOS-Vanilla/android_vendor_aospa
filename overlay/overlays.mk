@@ -13,6 +13,7 @@ PRODUCT_PACKAGES += \
     AOSPASettingsOverlay \
     AOSPASettingsProviderOverlay \
     AOSPASystemUIOverlay \
+    FontExotwoOverlay \
     FontGoogleSansOverlay \
     FontHarmonySansOverlay \
     FontInterOverlay \
