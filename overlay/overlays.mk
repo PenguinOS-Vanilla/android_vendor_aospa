@@ -20,6 +20,7 @@ PRODUCT_PACKAGES += \
     FontInterOverlay \
     FontLinotteSourceOverlay \
     FontManropeOverlay \
+    FontMiSansOverlay \
     FontNotoSansOverlay \
     FontOnePlusSansOverlay  \
     FontOppoSansOverlay \
