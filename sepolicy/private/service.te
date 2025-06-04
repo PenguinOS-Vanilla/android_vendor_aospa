@@ -22,4 +22,8 @@ type power_insight_service, system_api_service, system_server_service, service_m
 # Freeform
 type lmo_freeform_service, system_api_service, system_server_service, service_manager_type;
 
+# Refresh Rate Manager
+type refresh_rate_manager_service, system_api_service, system_server_service, service_manager_type;
+
+
 
