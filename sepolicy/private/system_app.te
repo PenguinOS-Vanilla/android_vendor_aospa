@@ -1,0 +1,3 @@
+# Allow GameSpace to set process group
+allow system_app cgroup:dir search;
+allow system_app cgroup:file rw_file_perms;
