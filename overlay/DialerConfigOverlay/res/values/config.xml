@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: Paranoid Android
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- The name of the package that will hold the dialer role by default. -->
+    <string name="config_defaultDialer" translatable="false">com.android.dialer</string>
+</resources>
