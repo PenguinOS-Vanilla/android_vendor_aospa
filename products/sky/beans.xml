@@ -6,11 +6,8 @@
 <manifest>
   <include name="../platforms/taro.xml" />
 
-  <project path="device/xiaomi/sky" name="AOSPA/android_device_xiaomi_sky" remote="aospa" revision="uvite" />
-  <project path="device/xiaomi/sky-kernel" name="AOSPA/android_device_xiaomi_sky-kernel" remote="aospa" revision="uvite" clone-depth="1" />
-  <project path="hardware/xiaomi" name="AOSPA/android_hardware_xiaomi" remote="aospa" revision="uvite" />
-  <project path="vendor/nxp/opensource/halimpl" name="AOSPA/android_vendor_nxp_opensource_halimpl" remote="aospa" revision="uvite-8450" />
-  <project path="vendor/nxp/opensource/hidlimpl" name="AOSPA/android_vendor_nxp_opensource_hidlimpl" remote="aospa" revision="uvite-8450" />
-  <project path="vendor/xiaomi" name="proprietary_vendor_xiaomi" remote="blobs" revision="uvite" clone-depth="1" />
-  <project path="vendor/xiaomi/firmware" name="proprietary_vendor_xiaomi_firmware" remote="blobs-gitlab" revision="uvite" clone-depth="1" />
+  <project path="hardware/xiaomi" name="AOSPA/android_hardware_xiaomi" remote="aospa" revision="beryl" />
+  <project path="vendor/nxp/opensource/halimpl" name="AOSPA/android_vendor_nxp_opensource_halimpl" remote="aospa" revision="beryl-8450" />
+  <project path="vendor/nxp/opensource/hidlimpl" name="AOSPA/android_vendor_nxp_opensource_hidlimpl" remote="aospa" revision="beryl-8450" />
+  <project path="vendor/xiaomi" name="proprietary_vendor_xiaomi" remote="blobs" revision="vauxite" clone-depth="1" />
 </manifest>
