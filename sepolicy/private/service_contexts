@@ -15,3 +15,6 @@ pih_manager                                 u:object_r:pih_manager_service:s0
 
 # Game space
 game_space                                u:object_r:game_space_service:s0
+
+# Obscura
+obscura                                   u:object_r:obscura_service:s0
