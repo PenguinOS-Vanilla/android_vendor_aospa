@@ -282,3 +282,7 @@ PRODUCT_VENDOR_MOVE_ENABLED := true
 PRODUCT_PACKAGES += \
     LMOFreeform \
     LMOFreeformSidebar
+
+# Datura
+PRODUCT_PACKAGES += \
+    Datura
