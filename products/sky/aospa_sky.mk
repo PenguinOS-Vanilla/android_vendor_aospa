@@ -24,7 +24,8 @@ PRODUCT_NAME := aospa_sky
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_PRODUCT=sky_global
+    DeviceProduct=sky_global \
+    SystemName=sky_global
 
 # Boot animation resolution.
 TARGET_BOOT_ANIMATION_RES := 1080
