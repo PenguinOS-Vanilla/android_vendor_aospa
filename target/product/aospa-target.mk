@@ -286,3 +286,6 @@ PRODUCT_PACKAGES += \
 # Datura
 PRODUCT_PACKAGES += \
     Datura
+
+# TFLite
+$(call inherit-product, vendor/aospa/misc/ax_tflite/common.mk)    
