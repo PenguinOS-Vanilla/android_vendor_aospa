@@ -111,8 +111,10 @@ if [ $AOSPA_VARIANT ]; then
         export AOSPA_BUILDTYPE=BETA
     elif [ "${AOSPA_VARIANT}" = "alpha" ]; then
         export AOSPA_BUILDTYPE=ALPHA
+    elif [ "${AOSPA_VARIANT}" = "official" ]; then
+        export AOSPA_BUILDTYPE=OFFICIAL
     else
-        echo -e "${CLR_BLD_RED} Unknown AOSPA variant - use alpha, beta or stable${CLR_RST}"
+        echo -e "${CLR_BLD_RED} Unknown AOSPA variant - use alpha, beta, official or stable${CLR_RST}"
         exit 1
     fi
 fi
@@ -183,6 +185,14 @@ echo -e "${CLR_BLD_BLU}Lunching $DEVICE${CLR_RST} ${CLR_CYA}(Including dependenc
 echo -e ""
 lunch "aospa_$DEVICE-$BUILD_TYPE"
 AOSPA_VERSION="$(get_build_var AOSPA_VERSION)"
+AOSPA_BUILD_VARIANT="$(get_build_var AOSPA_BUILD_VARIANT)"
+
+# Where the packages are served from. {device}, {version} and {filename} are substituted.
+# Assigned rather than defaulted with :=, whose own closing brace would end at the first one
+# in the URL and leave it truncated.
+if [ -z "$AOSPA_OTA_URL" ]; then
+    AOSPA_OTA_URL='https://sourceforge.net/projects/penguinos/files/{device}/{version}/{filename}/download'
+fi
 TARGET_KERNEL_OUT="$DIR_ROOT/$(get_build_var KERNEL_PREBUILT_DIR)"
 TARGET_KERNEL_VERSION="$(get_build_var TARGET_KERNEL_VERSION)"
 checkExit
@@ -239,17 +249,25 @@ elif [ "${KEY_MAPPINGS}" ]; then
     checkExit
 
     echo -e "${CLR_BLD_BLU}Signing target files apks${CLR_RST}"
-    sign_target_files_apks -o -d $KEY_MAPPINGS \
-        "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files.zip \
-        aospa-$AOSPA_VERSION-signed-target_files.zip
+    TARGET_FILES="$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files.zip
+
+    # APEXes name their own keys on the command line; the list is built from the package
+    # being signed so it follows the APEXes the build actually produced.
+    EXTRA_SIGN_ARGS="$(python3 "$DIR_ROOT"/vendor/aospa/build/tools/gen_sign_args.py \
+        "$TARGET_FILES" "$KEY_MAPPINGS")"
+    checkExit
+
+    sign_target_files_apks -o -d $KEY_MAPPINGS $EXTRA_SIGN_ARGS \
+        "$TARGET_FILES" \
+        $AOSPA_VERSION-$DEVICE-signed-target_files.zip
 
     checkExit
 
     echo -e "${CLR_BLD_BLU}Generating signed install package${CLR_RST}"
     ota_from_target_files -k $KEY_MAPPINGS/releasekey \
         --block ${INCREMENTAL} \
-        aospa-$AOSPA_VERSION-signed-target_files.zip \
-        aospa-$AOSPA_VERSION.zip
+        $AOSPA_VERSION-$DEVICE-signed-target_files.zip \
+        $AOSPA_VERSION-$DEVICE.zip
 
     checkExit
 
@@ -261,16 +279,16 @@ elif [ "${KEY_MAPPINGS}" ]; then
         fi
         ota_from_target_files -k $KEY_MAPPINGS/releasekey \
             --block --incremental_from $DELTA_TARGET_FILES \
-            aospa-$AOSPA_VERSION-signed-target_files.zip \
-            aospa-$AOSPA_VERSION-delta.zip
+            $AOSPA_VERSION-$DEVICE-signed-target_files.zip \
+            $AOSPA_VERSION-$DEVICE-delta.zip
         checkExit
     fi
 
     if [ "$FLAG_IMG_ZIP" = 'y' ]; then
         echo -e "${CLR_BLD_BLU}Generating signed fastboot package${CLR_RST}"
         img_from_target_files \
-            aospa-$AOSPA_VERSION-signed-target_files.zip \
-            aospa-$AOSPA_VERSION-image.zip
+            $AOSPA_VERSION-$DEVICE-signed-target_files.zip \
+            $AOSPA_VERSION-$DEVICE-image.zip
         checkExit
     fi
 # Build rom package
@@ -282,14 +300,14 @@ elif [ "$FLAG_IMG_ZIP" = 'y' ]; then
     echo -e "${CLR_BLD_BLU}Generating install package${CLR_RST}"
     ota_from_target_files \
         "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files.zip \
-        aospa-$AOSPA_VERSION.zip
+        $AOSPA_VERSION-$DEVICE.zip
 
     checkExit
 
     echo -e "${CLR_BLD_BLU}Generating fastboot package${CLR_RST}"
     img_from_target_files \
         "$OUT"/obj/PACKAGING/target_files_intermediates/aospa_$DEVICE-target_files.zip \
-        aospa-$AOSPA_VERSION-image.zip
+        $AOSPA_VERSION-$DEVICE-image.zip
 
     checkExit
 
@@ -298,10 +316,32 @@ else
 
     checkExit
 
-    cp -f $OUT/aospa_$DEVICE-ota.zip $OUT/aospa-$AOSPA_VERSION.zip
-    echo "Package Complete: $OUT/aospa-$AOSPA_VERSION.zip"
+    cp -f $OUT/aospa_$DEVICE-ota.zip $OUT/$AOSPA_VERSION-$DEVICE.zip
+    echo "Package Complete: $OUT/$AOSPA_VERSION-$DEVICE.zip"
 fi
 echo -e ""
+
+# Write the updater's feed for a public release, and show it: it has to be committed to the OTA
+# repo before anyone is offered the build, so it is printed rather than left to be found.
+case "${AOSPA_BUILD_VARIANT}" in
+    beta|official|stable)
+        OTA_PACKAGE="$AOSPA_VERSION-$DEVICE.zip"
+        [ -f "$OTA_PACKAGE" ] || OTA_PACKAGE="$OUT/$AOSPA_VERSION-$DEVICE.zip"
+        if [ -f "$OTA_PACKAGE" ]; then
+            echo -e "${CLR_BLD_BLU}Generating updater JSON${CLR_RST}"
+            python3 "$DIR_ROOT"/vendor/aospa/build/tools/gen_ota_json.py \
+                "$OTA_PACKAGE" \
+                --type "$AOSPA_BUILD_VARIANT" \
+                --url "$AOSPA_OTA_URL" \
+                -o "$DEVICE.json"
+            checkExit
+            echo -e ""
+            echo -e "${CLR_BLD_BLU}Commit this to the OTA repo as $DEVICE.json${CLR_RST}"
+            cat "$DEVICE.json"
+            echo -e ""
+        fi
+        ;;
+esac
 
 # Check the finishing time
 TIME_END=$(date +%s.%N)
