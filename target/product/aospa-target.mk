@@ -26,6 +26,16 @@ PRODUCT_SOURCE_ROOT_DIRS += -prebuilts/misc/protobuf_vendorcompat \
 PRODUCT_PACKAGES += \
     Abstruct
 
+# PenguinOS Setup Wizard (overrides the AOSP Provision stub)
+PRODUCT_PACKAGES += \
+    PenguinSetupWizard
+
+ifeq ($(TARGET_USES_BLUR), true)
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.sf.blurs_are_expensive=1 \
+    ro.surface_flinger.supports_background_blur=1
+endif
+
 # AOSPA Version.
 $(call inherit-product, vendor/aospa/target/product/version.mk)
 
@@ -251,6 +261,13 @@ PRODUCT_PACKAGES += \
 # Theme Picker
 PRODUCT_PACKAGES += \
     ThemePicker
+
+# Updater
+PRODUCT_PACKAGES += \
+    Updater \
+    update_engine \
+    update_verifier \
+    update_engine_sideload
 
 # WiFi
 PRODUCT_PACKAGES += \

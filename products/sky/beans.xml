@@ -6,8 +6,6 @@
 <manifest>
   <include name="../platforms/taro.xml" />
 
-  <project path="device/xiaomi/sky" name="AOSPA/android_device_xiaomi_sky" remote="aospa" revision="calcite" />
-  <project path="device/xiaomi/sky-kernel" name="AOSPA/android_device_xiaomi_sky-kernel" remote="aospa" revision="calcite" clone-depth="1" />
   <project path="hardware/xiaomi" name="AOSPA/android_hardware_xiaomi" remote="aospa" revision="calcite" />
   <project path="vendor/nxp/opensource/halimpl" name="AOSPA/android_vendor_nxp_opensource_halimpl" remote="aospa" revision="beryl-8450" />
   <project path="vendor/nxp/opensource/hidlimpl" name="AOSPA/android_vendor_nxp_opensource_hidlimpl" remote="aospa" revision="beryl-8450" />
