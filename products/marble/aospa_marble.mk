@@ -29,5 +29,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 # Boot animation resolution.
 TARGET_BOOT_ANIMATION_RES := 1080
-
+TARGET_USES_BLUR := true
 endif
