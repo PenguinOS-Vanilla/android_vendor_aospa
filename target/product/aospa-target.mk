@@ -247,6 +247,7 @@ PRODUCT_PACKAGES += \
 
 # Telephony - AOSP
 PRODUCT_PACKAGES += \
+    Dialer \
     Stk
 
 PRODUCT_BOOT_JARS += \
