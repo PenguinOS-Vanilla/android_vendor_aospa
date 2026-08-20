@@ -31,7 +31,11 @@ PRODUCT_PACKAGES += \
     PenguinSetupWizard
 
 ifeq ($(TARGET_USES_BLUR), true)
+# ro.custom.blur.enable is what BlurController and BlurUtils fall back to when
+# Settings.Global.disable_window_blurs has never been written, which is the case on a fresh flash.
+# Without it blur stays off until the accessibility switch is toggled on and back off.
 PRODUCT_PRODUCT_PROPERTIES += \
+    ro.custom.blur.enable=true \
     ro.sf.blurs_are_expensive=1 \
     ro.surface_flinger.supports_background_blur=1
 endif
