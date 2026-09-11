@@ -1,2 +1,5 @@
 # Pocket Judge
 type pocket_judge_sysfs, fs_type, sysfs_type;
+
+# Keystore compatibility
+type keystore_compat_data_file, file_type, data_file_type, core_data_file_type;

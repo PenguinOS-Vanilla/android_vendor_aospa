@@ -3,3 +3,7 @@
 
 # Pocket Judge
 /sys/kernel/pocket_judge(/.*)?	        u:object_r:pocket_judge_sysfs:s0
+
+# Keystore compatibility
+/data/system/keystore_compat(/.*)?          u:object_r:keystore_compat_data_file:s0
+/data/system/tee_simulator(/.*)?            u:object_r:keystore_compat_data_file:s0

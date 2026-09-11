@@ -16,3 +16,7 @@ allow platform_app system_userdir_file:file r_file_perms;
 # PowerInsight
 allow platform_app power_insight_service:service_manager find;
 
+
+# Keystore compatibility
+allow platform_app keystore_compat_data_file:dir create_dir_perms;
+allow platform_app keystore_compat_data_file:file create_file_perms;
