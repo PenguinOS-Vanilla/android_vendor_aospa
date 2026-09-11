@@ -294,3 +294,7 @@ PRODUCT_PACKAGES += \
 
 # TFLite
 $(call inherit-product, vendor/aospa/misc/ax_tflite/common.mk)    
+
+# Keystore Compatibility
+PRODUCT_COPY_FILES += \
+    vendor/aospa/target/init/keystore-compat.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/keystore-compat.rc
