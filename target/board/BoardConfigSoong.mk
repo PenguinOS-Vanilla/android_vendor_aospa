@@ -55,6 +55,12 @@ SOONG_CONFIG_aospaGlobalVars_target_init_vendor_lib := $(TARGET_INIT_VENDOR_LIB)
 SOONG_CONFIG_aospaGlobalVars_target_ld_shim_libs := $(subst $(space),:,$(TARGET_LD_SHIM_LIBS))
 SOONG_CONFIG_aospaGlobalVars_target_process_sdk_version_override := $(TARGET_PROCESS_SDK_VERSION_OVERRIDE)
 SOONG_CONFIG_aospaGlobalVars_target_surfaceflinger_udfps_lib := $(TARGET_SURFACEFLINGER_UDFPS_LIB)
+
+ifneq ($(filter-out vendor_init,$(TARGET_INIT_VENDOR_LIB)),)
+SOONG_CONFIG_NAMESPACES += libinit
+SOONG_CONFIG_libinit += vendor_init_lib
+SOONG_CONFIG_libinit_vendor_init_lib := $(TARGET_INIT_VENDOR_LIB)
+endif
 ifneq ($(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH),)
 SOONG_CONFIG_aospaGlobalVars_target_health_charging_control_charging_path := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH)
 endif
