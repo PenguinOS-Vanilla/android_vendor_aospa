@@ -6,7 +6,7 @@
 <manifest>
   <include name="../platforms/taro.xml" />
 
-  <project path="device/xiaomi/mondrian" name="mondrian-aospa/1mondrian" remote="github" revision="los" />
+  <!--project path="device/xiaomi/mondrian" name="mondrian-aospa/1mondrian" remote="github" revision="los" />
   <project path="kernel/xiaomi/sm8450" name="xiaomi-sm8450-mondrian/kernel_sm8450" remote="github" revision="16.0" clone-depth="1" />
   <project path="kernel/xiaomi/sm8450-modules" name="xiaomi-sm8450-mondrian/android_kernel_xiaomi_sm8450-modules" remote="github" revision="16.0" clone-depth="1" />
   <project path="kernel/xiaomi/sm8450-devicetrees" name="xiaomi-sm8450-mondrian/android_kernel_xiaomi_sm8450-devicetrees" remote="github" revision="16" clone-depth="1" />
@@ -17,5 +17,5 @@
   <project path="vendor/xiaomi/mondrian" name="keosh/vendor_mondrian23.2" remote="gitlab" revision="aospa" clone-depth="1" />
   <project path="vendor/xiaomi/mondrian-firmware" name="mondrian-aospa/1vendor_xiaomi_mondrian-firmware" remote="github" revision="aospa" clone-depth="1" />
   <project path="vendor/xiaomi/sm8450-common" name="mondrian-aospa/tmp_proprietary_vendor_xiaomi_sm8450-common" remote="github" revision="beryl" clone-depth="1" />
-  <project path="vendor/xiaomi/miuicamera-mondrian" name="keosh/proprietary_vendor_xiaomi_miuicamera-cupid" remote="gitlab" revision="main" />
+  <project path="vendor/xiaomi/miuicamera-mondrian" name="keosh/proprietary_vendor_xiaomi_miuicamera-cupid" remote="gitlab" revision="main" /-->
 </manifest>
