@@ -159,6 +159,14 @@ $(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules.m
 endif
 else
 $(warning Building Without GMS)
+# Google Sans: fonts_customization.xml and FontController default to these
+# families, which otherwise only ship with vendor/google/pixel on GMS builds.
+ifneq ($(wildcard vendor/google/pixel/proprietary/product/fonts),)
+PRODUCT_COPY_FILES += \
+    vendor/google/pixel/proprietary/product/fonts/GoogleSans-Italic.ttf:$(TARGET_COPY_OUT_PRODUCT)/fonts/GoogleSans-Italic.ttf \
+    vendor/google/pixel/proprietary/product/fonts/GoogleSans-Regular.ttf:$(TARGET_COPY_OUT_PRODUCT)/fonts/GoogleSans-Regular.ttf \
+    vendor/google/pixel/proprietary/product/fonts/GoogleSansFlex-Regular.ttf:$(TARGET_COPY_OUT_PRODUCT)/fonts/GoogleSansFlex-Regular.ttf
+endif
 ifeq ($(TARGET_INCLUDE_MICROG), true)
 $(warning Building With microG)
 $(call inherit-product, vendor/partner_gms/products/gms.mk)
