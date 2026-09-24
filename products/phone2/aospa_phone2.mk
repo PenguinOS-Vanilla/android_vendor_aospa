@@ -24,6 +24,8 @@ PRODUCT_NAME := aospa_phone2
 # Bootanimation resolution
 TARGET_BOOT_ANIMATION_RES := 1080
 
+TARGET_USES_BLUR := true
+
 # Override device name for Play Store.
 PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceName=Pong \
