@@ -19,6 +19,7 @@ import sys
 import zipfile
 
 NAME_RE = re.compile(r'name="([^"]+)"')
+PRESIGNED_RE = re.compile(r'private_key="PRESIGNED"')
 
 # APKs that ship inside an APEX, and so are signed with a key of their own
 # rather than one of the platform keys.
@@ -41,13 +42,20 @@ APEX_EMBEDDED_APKS = (
 )
 
 
-def names_in(target_files, meta):
+def names_in(target_files, meta, skip_presigned=False):
     try:
         with zipfile.ZipFile(target_files) as zf:
             body = zf.read(meta).decode()
     except KeyError:
         return []
-    return [m.group(1) for line in body.splitlines() if (m := NAME_RE.search(line))]
+    names = []
+    for line in body.splitlines():
+        if not (m := NAME_RE.search(line)):
+            continue
+        if skip_presigned and PRESIGNED_RE.search(line):
+            continue
+        names.append(m.group(1))
+    return names
 
 
 def main():
@@ -64,7 +72,7 @@ def main():
             out.append(f"--extra_apks {apk}={certs}/releasekey")
 
     missing = []
-    for apex in names_in(args.target_files, "META/apexkeys.txt"):
+    for apex in names_in(args.target_files, "META/apexkeys.txt", skip_presigned=True):
         key = os.path.join(certs, apex.removesuffix(".apex").removesuffix(".capex"))
         if not os.path.exists(key + ".pk8"):
             missing.append(apex)
