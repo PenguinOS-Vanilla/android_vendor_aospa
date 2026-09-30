@@ -9,7 +9,3 @@ hal_client_domain(platform_app, hal_lineage_health)
 # PowerInsight
 allow platform_app power_insight_service:service_manager find;
 
-
-# Keystore compatibility
-allow platform_app keystore_compat_data_file:dir create_dir_perms;
-allow platform_app keystore_compat_data_file:file create_file_perms;
