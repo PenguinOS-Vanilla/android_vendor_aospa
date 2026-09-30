@@ -39,18 +39,5 @@ add_service(system_server, refresh_rate_manager_service);
 # Linearmotor Vibrator
 add_service(system_server, linearmotor_vibrator_service);
 
-
-
-
-
-
-# Keystore compatibility
-allow system_server keystore_compat_data_file:dir create_dir_perms;
-allow system_server keystore_compat_data_file:file create_file_perms;
-get_prop(system_server, keystore_compat_prop)
-
-# Play Integrity hooks
-get_prop(system_server, pih_disable_prop)
-
 # Luminous
 get_prop(system_server, penguin_luminous_prop)
