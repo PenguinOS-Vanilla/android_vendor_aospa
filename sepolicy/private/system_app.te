@@ -2,9 +2,6 @@
 allow system_app cgroup:dir search;
 allow system_app cgroup:file rw_file_perms;
 
-# Obscura
-allow system_app obscura_service:service_manager find;
-
 # PowerInsight
 allow system_app power_insight_service:service_manager find;
 
