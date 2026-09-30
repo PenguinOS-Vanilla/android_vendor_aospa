@@ -1,2 +1,0 @@
-# PIH
-allow { appdomain -isolated_app_all -ephemeral_app -sdk_sandbox_all } pih_manager_service:service_manager find;
