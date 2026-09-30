@@ -6,7 +6,3 @@ allow system_app cgroup:file rw_file_perms;
 allow system_app power_insight_service:service_manager find;
 
 
-
-# Keystore compatibility
-allow system_app keystore_compat_data_file:dir create_dir_perms;
-allow system_app keystore_compat_data_file:file create_file_perms;
