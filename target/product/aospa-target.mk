@@ -135,7 +135,7 @@ DONT_DEXPREOPT_PREBUILTS := true
 endif
 
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    GameSpace \
+    Pentas \
     Launcher3QuickStep \
     PenguinSystemUI
 
@@ -387,7 +387,7 @@ PRODUCT_VENDOR_MOVE_ENABLED := true
 
 # GameSpace
 PRODUCT_PACKAGES += \
-    GameSpace
+    Pentas
 
 # LMOFreeform
 PRODUCT_PACKAGES += \
@@ -400,4 +400,3 @@ PRODUCT_PACKAGES += \
 
 # TFLite
 $(call inherit-product, vendor/aospa/misc/ax_tflite/common.mk)    
-
