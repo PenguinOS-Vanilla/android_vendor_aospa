@@ -1,6 +1,18 @@
-# Allow GameSpace to set process group
+# Allow Pentas to set process group
 allow system_app cgroup:dir search;
 allow system_app cgroup:file rw_file_perms;
+
+# Allow Pentas to read CPU load, uptime and temperatures
+allow system_app proc_stat:file r_file_perms;
+allow system_app proc_loadavg:file r_file_perms;
+allow system_app proc_uptime:file r_file_perms;
+allow system_app proc_pid_max:file r_file_perms;
+allow system_app sysfs_thermal:dir r_dir_perms;
+allow system_app sysfs_thermal:file r_file_perms;
+
+# Pentas lists running processes; the ones it may not read are expected
+dontaudit system_app domain:dir r_dir_perms;
+dontaudit system_app domain:file r_file_perms;
 
 # PowerInsight
 allow system_app power_insight_service:service_manager find;
