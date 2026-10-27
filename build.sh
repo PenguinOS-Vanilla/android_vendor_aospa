@@ -209,6 +209,8 @@ if [ -z "$AOSPA_OTA_URL" ]; then
 fi
 TARGET_KERNEL_OUT="$DIR_ROOT/$(get_build_var KERNEL_PREBUILT_DIR)"
 TARGET_KERNEL_VERSION="$(get_build_var TARGET_KERNEL_VERSION)"
+# kernel_platform variant: gki on 6.1 targets, perf or consolidate on 6.6 ones
+TARGET_KERNEL_VARIANT="$(get_build_var TARGET_KERNEL_VARIANT)"
 checkExit
 echo -e ""
 
@@ -242,7 +244,7 @@ if [ -d "$DIR_ROOT/kernel_platform/" ] && (
         EXTRA_KERNEL_FLAGS+=' RECOMPILE_KERNEL=1'
         [ -d "${TARGET_KERNEL_OUT}" ] && rm -r "${TARGET_KERNEL_OUT}"
     fi
-    eval "${EXTRA_KERNEL_FLAGS}" ANDROID_KERNEL_OUT="${TARGET_KERNEL_OUT}" KERNEL_VARIANT=gki ./kernel_platform/build/android/prepare_vendor.sh
+    eval "${EXTRA_KERNEL_FLAGS}" ANDROID_KERNEL_OUT="${TARGET_KERNEL_OUT}" KERNEL_VARIANT="${TARGET_KERNEL_VARIANT:-gki}" ./kernel_platform/build/android/prepare_vendor.sh
 fi
 
 # Build a specific module(s)
