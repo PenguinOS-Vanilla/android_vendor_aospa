@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2026 The PenguinOS Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<manifest>
+  <!-- sun (sm8750) vendor HALs from the LineageOS CAF sm8750 branches -->
+  <project path="hardware/qcom/display" name="Dodge-CLO/android_hardware_qcom_display" remote="github-ssh" revision="celerity-clean" />
+  <project path="vendor/qcom/opensource/display-core" name="LineageOS/android_vendor_qcom_opensource_display-core" remote="github" revision="lineage-24.0-caf-sm8750" />
+  <project path="vendor/qcom/opensource/display-intf" name="LineageOS/android_vendor_qcom_opensource_display-intf" remote="github" revision="lineage-24.0-caf-sm8750" />
+  <!-- Needed by the vendor/qcom/common gps-legacy modules -->
+  <project path="hardware/oplus" name="Project-PenguinOS/hardware_oplus" remote="penguin" revision="celerity" />
+  <project path="hardware/qcom/gps" name="AOSPA/android_hardware_qcom_gps" remote="aospa" revision="calcite-8650" />
+  <project path="vendor/qcom/opensource/agm" name="LineageOS/android_vendor_qcom_opensource_agm" remote="github" revision="lineage-24.0-caf-sm8750" />
+  <project path="vendor/qcom/opensource/audio-hal/primary-hal" name="LineageOS/android_hardware_qcom_audio-ar" remote="github" revision="lineage-24.0-caf-sm8750" />
+  <project path="vendor/qcom/opensource/audio-hal/st-hal-ar" name="Project-PenguinOS/vendor_qcom_opensource_audio-hal_st-hal-ar" remote="penguin" revision="celerity" />
+  <project path="vendor/qcom/opensource/audioreach-graphservices" name="LineageOS/android_vendor_qcom_opensource_audioreach-graphservices" remote="github" revision="lineage-24.0-caf-sm8750" />
+  <project path="vendor/qcom/opensource/pal" name="LineageOS/android_vendor_qcom_opensource_arpal-lx" remote="github" revision="lineage-24.0-caf-sm8750" />
+</manifest>
