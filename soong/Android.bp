@@ -54,6 +54,24 @@ egl_display_array {
     },
 }
 
+// Keep the vendor variant of libui's GraphicBuffer at the size older vendor blobs allocate
+soong_config_module_type {
+    name: "legacy_vendor_graphicbuffer",
+    module_type: "cc_defaults",
+    config_namespace: "aospaGlobalVars",
+    bool_variables: ["uses_legacy_vendor_graphicbuffer"],
+    properties: ["cflags"],
+}
+
+legacy_vendor_graphicbuffer {
+    name: "legacy_vendor_graphicbuffer_defaults",
+    soong_config_variables: {
+        uses_legacy_vendor_graphicbuffer: {
+            cflags: ["-DLIBUI_LEGACY_VENDOR_GRAPHICBUFFER"],
+        },
+    },
+}
+
 soong_config_module_type {
     name: "powershare_node",
     module_type: "cc_defaults",
