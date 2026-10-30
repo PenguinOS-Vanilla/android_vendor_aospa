@@ -97,8 +97,10 @@ PRODUCT_PACKAGES += \
     ExactCalculator
 
 # Camera
+ifneq ($(TARGET_EXCLUDES_APERTURE), true)
 PRODUCT_PACKAGES += \
     Aperture
+endif
 
 # Charger
 ifeq ($(TARGET_DISABLES_GMS), true)
@@ -166,6 +168,12 @@ PRODUCT_COPY_FILES += \
 # Gestures
 PRODUCT_PACKAGES += \
     vendor.aospa.power-service
+
+# Keyboard: the PenguinOS LatinIME instead of Gboard
+ifeq ($(TARGET_USES_PENGUIN_LATINIME), true)
+PRODUCT_PACKAGES += \
+    LatinIME
+endif
 
 # Google - GMS, Pixel, and Mainline Modules
 ifneq ($(TARGET_DISABLES_GMS), true)
