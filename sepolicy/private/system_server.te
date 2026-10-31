@@ -25,7 +25,6 @@ add_service(system_server, pih_manager_service);
 # Game space
 add_service(system_server, game_space_service);
 
-
 # PowerInsight
 add_service(system_server, power_insight_service);
 allow system_server sysfs_batteryinfo:dir r_dir_perms;
@@ -39,19 +38,6 @@ add_service(system_server, refresh_rate_manager_service);
 
 # Linearmotor Vibrator
 add_service(system_server, linearmotor_vibrator_service);
-
-
-
-
-
-
-# Keystore compatibility
-allow system_server keystore_compat_data_file:dir create_dir_perms;
-allow system_server keystore_compat_data_file:file create_file_perms;
-get_prop(system_server, keystore_compat_prop)
-
-# Play Integrity hooks
-get_prop(system_server, pih_disable_prop)
 
 # Luminous
 get_prop(system_server, penguin_luminous_prop)
