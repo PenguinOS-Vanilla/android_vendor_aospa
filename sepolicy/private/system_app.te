@@ -10,6 +10,9 @@ allow system_app proc_pid_max:file r_file_perms;
 allow system_app sysfs_thermal:dir r_dir_perms;
 allow system_app sysfs_thermal:file r_file_perms;
 
+# Allow Pentas to set CPU clock limits (cpufreq scaling_{min,max}_freq)
+allow system_app sysfs_devices_system_cpu:file rw_file_perms;
+
 # Pentas lists running processes; the ones it may not read are expected
 dontaudit system_app domain:dir r_dir_perms;
 dontaudit system_app domain:file r_file_perms;
